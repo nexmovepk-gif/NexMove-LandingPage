@@ -1,0 +1,2349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexMove | Pakistan’s PropTech SaaS for Real Estate Agencies</title>
+  <meta name="description"
+    content="NexMove is an all-in-one PropTech SaaS for Pakistani real estate agencies. Multi-tenant CRM, AI document extraction, 3D tours, deal rooms, ads manager, WhatsApp alerts, and secure billing. Start your 30-day free trial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #0B192C;
+      /* Deep Navy Blue */
+      --navy-light: #1E3A5F;
+      /* Medium Navy */
+      --emerald-accent: #00C2FF;
+      /* Cyan / Electric Blue */
+      --gold: #10B981;
+      /* Emerald Green Accent - Buttons */
+      --gold-light: #6EE7B7;
+      /* Light Emerald */
+      --teal: #0099CC;
+      /* Mid Blue-Cyan */
+      --teal-light: #E8F7FF;
+      /* Subtle Blue Tint */
+      --bg: #F0F4F8;
+      --card: #FFFFFF;
+      --text: #0B192C;
+      --muted: #5A7184;
+      --border: #D1DDE8;
+      --radius: 18px;
+      --shadow: 0 4px 24px rgba(11, 25, 44, 0.07);
+      --shadow-lg: 0 20px 50px rgba(11, 25, 44, 0.12);
+      --max: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img,
+    svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #ffffff;
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: #059669;
+      border-color: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--navy);
+      background: #fff;
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-outline-light:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 25, 44, 0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      color: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .logo-proptech {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-left: 2px;
+      padding-left: 6px;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .logo span {
+      color: var(--gold-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      background: linear-gradient(145deg, #0B192C 0%, #0D2137 50%, #022C22 100%);
+      color: #fff;
+      padding: 80px 0 100px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(5, 150, 105, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 194, 255, 0.15);
+      border: 1px solid rgba(0, 194, 255, 0.35);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--gold);
+      display: inline;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.72);
+      max-width: 540px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+    }
+
+    .trust-item i {
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 24px;
+      width: 100%;
+      max-width: 440px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .hero-card-header span {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .hero-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-dots span:first-child {
+      background: var(--gold);
+    }
+
+    .hero-metric {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric-box {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .metric-box .label {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .metric-box .value {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .metric-box .value small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-progress {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .hero-progress .top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-progress .top span:first-child {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-progress .top span:last-child {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 60%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 999px;
+    }
+
+    .hero-mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mini-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mini-row i {
+      color: var(--teal-light);
+      font-size: 0.85rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    /* ---------- SECTION STYLES ---------- */
+    section {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-light);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--navy);
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    /* ---------- FEATURES ---------- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px 26px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(16, 185, 129, 0.45);
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: var(--teal-light);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card:nth-child(3n+2) .feature-icon {
+      background: #E8F7FF;
+      color: #1E3A5F;
+    }
+
+    .feature-card:nth-child(3n+3) .feature-icon {
+      background: #F0FDF4;
+      color: #16A34A;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ---------- PRICING ---------- */
+    .pricing-section {
+      background: #fff;
+    }
+
+    .pricing-toggle {
+      display: inline-flex;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin: 0 auto 40px;
+      gap: 2px;
+    }
+
+    .pricing-toggle button {
+      padding: 9px 18px;
+      border: none;
+      background: transparent;
+      border-radius: 9px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .pricing-toggle button.active {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(6, 78, 59, 0.25);
+    }
+
+    .pricing-toggle button .save-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      background: var(--gold);
+      color: #ffffff;
+      padding: 1px 6px;
+      border-radius: 999px;
+      margin-left: 6px;
+      font-weight: 800;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      padding: 34px 30px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .price-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .price-card.popular {
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.18);
+    }
+
+    .price-card.popular::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 4px 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .price-card .tier-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .price-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .price-card .tier-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      min-height: 40px;
+    }
+
+    .price-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .price-amount .currency {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .price-amount .number {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+    }
+
+    .price-amount .period {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      min-height: 18px;
+    }
+
+    .price-note strong {
+      color: var(--teal);
+    }
+
+    .trial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #E8F7FF;
+      color: #1E3A5F;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .price-features {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin: 20px 0 26px;
+      flex: 1;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .price-features li i {
+      color: var(--teal);
+      font-size: 0.8rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+
+    .price-features li.disabled {
+      color: #94A3B8;
+    }
+
+    .price-features li.disabled i {
+      color: #CBD5E1;
+    }
+
+    .price-features li .extra {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .addon-note {
+      background: #FFFBEB;
+      border: 1px dashed #FCD34D;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      color: #92400E;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .addon-note i {
+      margin-right: 4px;
+    }
+
+    /* ---------- PAYMENTS ---------- */
+    .payments-section {
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto 30px;
+    }
+
+    .payment-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .payment-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .payment-card i {
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .payment-card .pay-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .payment-card .pay-type {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .payment-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .payment-note i {
+      color: var(--teal);
+      margin-right: 4px;
+    }
+
+    /* ---------- SECURITY ---------- */
+    .security-section {
+      background: #0B192C;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .security-section::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .security-section .section-tag {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--gold-light);
+    }
+
+    .security-section .section-header h2 {
+      color: #fff;
+    }
+
+    .security-section .section-header p {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .security-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .security-item .s-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .security-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .security-item p {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+    }
+
+    /* ---------- HELPLINE ---------- */
+    .helpline-section {
+      background: #fff;
+    }
+
+    .helpline-box {
+      background: linear-gradient(135deg, #0B192C 0%, #1E3A5F 100%);
+      border-radius: 24px;
+      padding: 50px 44px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .helpline-box::before {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .helpline-box h2 {
+      color: #fff;
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .helpline-box p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+    }
+
+    .contact-item .c-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item .c-label {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact-item .c-value {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .contact-item .c-value a {
+      color: #fff;
+    }
+
+    .contact-item .c-value a:hover {
+      color: var(--gold-light);
+    }
+
+    .helpline-hours {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .helpline-hours i {
+      color: var(--gold-light);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #022C22;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 50px 0 30px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.8rem;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 22px;
+    }
+
+    .footer-legal a {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .footer-legal a:hover {
+      color: var(--gold);
+    }
+
+    /* ---------- MODALS ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 15, 36, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 18px;
+      padding-right: 30px;
+    }
+
+    .modal h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 20px 0 8px;
+    }
+
+    .modal p,
+    .modal li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .modal ul {
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .modal ul li {
+      margin-bottom: 6px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: var(--bg);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    .modal .updated {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-bottom: 16px;
+    }
+
+    /* ---------- RESPONSIVE ENHANCEMENTS ---------- */
+    @media (max-width: 1024px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-card {
+        max-width: 100%;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .price-card.popular {
+        transform: none;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+
+      .helpline-box {
+        grid-template-columns: 1fr;
+        padding: 36px 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        height: 64px;
+        padding: 0 16px;
+      }
+
+      .logo {
+        font-size: 1.15rem;
+        gap: 8px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+      }
+
+      .logo-proptech {
+        font-size: 0.78rem;
+        padding-left: 4px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #060f24;
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+      }
+
+      .nav-links.open a {
+        padding: 8px 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-actions .btn-outline-light {
+        display: inline-flex;
+        padding: 7px 12px;
+        font-size: 0.82rem;
+      }
+
+      .nav-actions .btn-primary {
+        padding: 7px 14px;
+        font-size: 0.82rem;
+      }
+
+      .hero {
+        padding: 40px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.3rem);
+        line-height: 1.25;
+      }
+
+      .hero p {
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        font-size: 0.95rem;
+      }
+
+      .hero-trust {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 14px;
+      }
+
+      .hero-trust .trust-item {
+        font-size: 0.8rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .feature-card {
+        padding: 24px 20px;
+      }
+
+      .pricing-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto 28px;
+        padding: 6px;
+      }
+
+      .pricing-toggle button {
+        padding: 9px 8px;
+        font-size: 0.8rem;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+      }
+
+      .price-card {
+        padding: 26px 20px;
+      }
+
+      .payment-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .security-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .helpline-box {
+        padding: 30px 20px;
+        border-radius: 18px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .footer-legal {
+        justify-content: center;
+      }
+
+      /* Modals on Mobile */
+      .modal {
+        width: 94%;
+        max-width: 94%;
+        padding: 24px 18px;
+        max-height: 88vh;
+        overflow-y: auto;
+        border-radius: 16px;
+      }
+
+      #agencyRegisterForm div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar .container {
+        padding: 0 12px;
+      }
+
+      .nav-actions .btn-outline-light {
+        display: none;
+      }
+
+      .hero-trust {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .hero-metric {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 16px;
+      }
+
+      .metric-box {
+        padding: 12px;
+      }
+
+      .metric-box .value {
+        font-size: 1.15rem;
+      }
+
+      .pricing-grid {
+        width: 100%;
+      }
+
+      .price-amount .number {
+        font-size: 2.1rem;
+      }
+
+      .helpline-box h2 {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-mark"><img src="Logo.png" alt="NexMove Logo"></div>
+        Nex<span>Move</span> <span class="logo-proptech">PropTech</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="blog.html">Blog</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#payments">Payments</a>
+        <a href="#security">Security</a>
+        <a href="#helpline">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://nexmove-app.vercel.app/login" class="btn btn-outline-light btn-sm">
+          <i class="fas fa-right-to-bracket"></i> Login
+        </a>
+        <a href="https://nexmove-app.vercel.app/register" class="btn btn-primary btn-sm">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i> Built for Pakistani Real Estate Agencies
+        </div>
+        <h1>
+          Run Your Entire Agency<br />
+          From <span class="highlight">One Secure Platform</span>
+        </h1>
+        <p>
+          NexMove brings your CRM, deal rooms, property listings, ads, and team
+          management into one multi-tenant SaaS. AI document extraction, 3D tours,
+          automated rent collection, and WhatsApp alerts all PECA-compliant and
+          built for Pakistan.
+        </p>
+        <div class="hero-actions">
+          <a href="#pricing" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Start 30-Day Free Trial
+          </a>
+          <a href="#features" class="btn btn-outline-light">
+            <i class="fas fa-play-circle"></i> Explore Features
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><i class="fas fa-shield-halved"></i> PECA 2016 Compliant</div>
+          <div class="trust-item"><i class="fas fa-lock"></i> 256-bit Encryption</div>
+          <div class="trust-item"><i class="fas fa-building-columns"></i> Meezan Bank Verified</div>
+          <div class="trust-item"><i class="fas fa-mobile-screen"></i> EasyPaisa & JazzCash</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span>Agency Dashboard</span>
+            <div class="hero-dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="hero-metric">
+            <div class="metric-box">
+              <div class="label">Active Agents</div>
+              <div class="value">8 <small>/ 8</small></div>
+            </div>
+            <div class="metric-box">
+              <div class="label">Deal Rooms</div>
+              <div class="value">3 <small>/ 5</small></div>
+            </div>
+          </div>
+          <div class="hero-progress">
+            <div class="top">
+              <span>Monthly Deal Quota</span>
+              <span>60% used</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+          <div class="hero-mini-list">
+            <div class="mini-row"><i class="fas fa-file-shield"></i> AI Document Extraction Title Deed verified</div>
+            <div class="mini-row"><i class="fas fa-cube"></i> 3D Virtual Tour published to marketplace</div>
+            <div class="mini-row"><i class="fas fa-bell"></i> WhatsApp alert sent to 4 leads</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Everything Your Agency Needs</div>
+        <h2>One Platform. Every Tool. Zero Chaos.</h2>
+        <p>
+          From the first lead to the final deal NexMove replaces scattered
+          spreadsheets, WhatsApp groups, and disconnected tools with a single,
+          secure ecosystem.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-users-gear"></i></div>
+          <h3>Multi-Tenant CRM & Deal Rooms</h3>
+          <p>Agency-scoped CRM with strict data shielding. Manage leads, clients, and properties in one place each
+            agency’s data is fully isolated.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-file-contract"></i></div>
+          <h3>AI Property Document Extraction</h3>
+          <p>Upload Title Deeds, Blueprints, or Fard AI automatically parses specifications, ownership details, and
+            market valuations.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div>
+          <h3>3D Virtual Tours</h3>
+          <p>Publish immersive 3D property tours directly to your verified marketplace listing. Close deals faster with
+            remote buyers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-money-bill-trend-up"></i></div>
+          <h3>Automated Rent Collection</h3>
+          <p>Schedule, collect, and reconcile rent payments automatically. Reduce manual follow-ups and track arrears in
+            real time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-store"></i></div>
+          <h3>Verified Marketplace & Agency Badges</h3>
+          <p>Showcase listings on a public verified marketplace. Trade license and RERA/DLD broker certificate
+            verification builds instant trust.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bullhorn"></i></div>
+          <h3>Ads Manager & Promotions</h3>
+          <p>Launch self-serve property promotions, boost visibility, and track ad performance available on Growth and
+            Enterprise plans.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3>WhatsApp & Push Alerts</h3>
+          <p>Send instant deal updates, lead alerts, and reminders via WhatsApp and push notifications. Built for how
+            Pakistani agencies actually communicate.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+          <h3>RBAC & Team Management</h3>
+          <p>Role-based access control for Super Admin, Agency Manager, Agent, and Public User. Give every team member
+            exactly the right permissions.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+          <h3>Shared Co-Broking & AI Matcher</h3>
+          <p>Instant Inter-Agency Network
+
+            Never turn a client away. If a matching property isn't in your inventory instantly search partner agencies,
+            connect with them in seconds, and seamlessly close 50/50 profit-split deals to keep your clients happy and
+            revenue growing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-calculator"></i></div>
+          <h3>Investors Portal</h3>
+          <p>Empower institutional and private investors with real-time portfolio tracking, detailed asset performance
+            analytics, and complete financial transparency. Designed to accelerate high-value decision-making, the
+            portal provides secure access to live market metrics, funding updates, and streamlined transaction
+            management in one centralized hub.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-globe"></i></div>
+          <h3>Overseas Clients</h3>
+          <p>Bridge the distance for international clients and diaspora users with a secure, remote-first management
+            platform. From cross-border investment tracking to real-time project updates and dedicated multi-currency
+            support, this portal ensures global users stay fully connected, informed, and in control from anywhere in
+            the world.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Agency Leaderboard & Analytics</h3>
+          <p>Track performance analytics, financial ledgers, and verified agency profiles. See how your agency ranks in
+            the ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ==================== PRICING ==================== -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Transparent Pricing</div>
+        <h2>Pick the Plan That Grows With You</h2>
+        <p>
+          Start free for 30 days. No credit card required. Upgrade, downgrade, or
+          add extra deal rooms anytime.
+        </p>
+      </div>
+
+      <!-- Toggle -->
+      <div class="pricing-toggle" id="pricingToggle">
+        <button data-cycle="monthly" class="active">Monthly</button>
+        <button data-cycle="quarterly">Quarterly <span class="save-badge">Save 5%</span></button>
+        <button data-cycle="halfyearly">Half-Yearly <span class="save-badge">Save 8%</span></button>
+        <button data-cycle="annual">Annual <span class="save-badge">Save 15%</span></button>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- STARTER -->
+        <div class="price-card">
+          <div class="tier-name">Starter</div>
+          <h3>Starter</h3>
+          <p class="tier-desc">For new and independent agencies testing the waters.</p>
+          <div class="trial-badge"><i class="fas fa-gift"></i> 30-Day Free Trial</div>
+          <div class="price-amount">
+            <span class="currency">PKR</span>
+            <span class="number" data-monthly="4,999" data-quarterly="13,999" data-halfyearly="26,999"
+              data-annual="49,999">4,999</span>
+            <span class="period" data-period>/month</span>
+          </div>
+          <div class="price-note" data-note>Billed monthly after trial</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> Up to <strong>3 Agents</strong> + 1 Admin</li>
+            <li><i class="fas fa-check"></i> Basic CRM & lead management</li>
+            <li><i class="fas fa-check"></i> Verified marketplace listing</li>
+            <li><i class="fas fa-check"></i> Email notifications only</li>
+            <li class="disabled"><i class="fas fa-lock"></i> Deal Rooms — Upgrade required</li>
+            <li class="disabled"><i class="fas fa-lock"></i> Ads Manager — Upgrade required</li>
+            <li class="disabled"><i class="fas fa-lock"></i> WhatsApp alerts — Not included</li>
+          </ul>
+          <a href="https://nexmove-app.vercel.app/login" class="btn btn-outline btn-block">
+            Start Free Trial <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- GROWTH -->
+        <div class="price-card popular">
+          <div class="tier-name">Growth</div>
+          <h3>Growth</h3>
+          <p class="tier-desc">For active local brokerages ready to scale.</p>
+          <div style="height: 28px;"></div>
+          <div class="price-amount">
+            <span class="currency">PKR</span>
+            <span class="number" data-monthly="16,999" data-quarterly="48,999" data-halfyearly="94,999"
+              data-annual="160,000">16,999</span>
+            <span class="period" data-period>/month</span>
+          </div>
+          <div class="price-note" data-note>Billed monthly</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> Up to <strong>8 Agents</strong> + Admins</li>
+            <li><i class="fas fa-check"></i> <strong>5 Deal Rooms</strong> per month</li>
+            <li><i class="fas fa-check"></i> <strong>Co-Broking Deals:</strong> 5 deals per month</li>
+            <li><i class="fas fa-check"></i> Ads Manager fully unlocked</li>
+            <li><i class="fas fa-check"></i> WhatsApp & push alerts</li>
+            <li><i class="fas fa-check"></i> Full CRM + AI document extraction</li>
+            <li><i class="fas fa-check"></i> 3D virtual tours & marketplace</li>
+            <li><i class="fas fa-check"></i> Automated rent collection</li>
+          </ul>
+          <div class="addon-note">
+            <i class="fas fa-plus-circle"></i>
+            <strong>Add-on:</strong> Extra Deal Room PKR 1,500 per deal. No need to jump to Enterprise.
+          </div>
+          <a href="https://nexmove-app.vercel.app/login" class="btn btn-primary btn-block">
+            Upgrade to Growth <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- ENTERPRISE -->
+        <div class="price-card">
+          <div class="tier-name">Elite Enterprise</div>
+          <h3>Enterprise</h3>
+          <p class="tier-desc">For top real estate groups that need unlimited scale.</p>
+          <div style="height: 28px;"></div>
+          <div class="price-amount">
+            <span class="currency">PKR</span>
+            <span class="number" data-monthly="38,999" data-quarterly="110,999" data-halfyearly="219,999"
+              data-annual="375,000">38,999</span>
+            <span class="period" data-period>/month</span>
+          </div>
+          <div class="price-note" data-note>Billed monthly</div>
+          <ul class="price-features">
+            <li><i class="fas fa-check"></i> <strong>Unlimited Agents</strong> & Admins</li>
+            <li><i class="fas fa-check"></i> <strong>Unlimited Deal Rooms</strong></li>
+            <li><i class="fas fa-check"></i> <strong>Co-Broking Deals:</strong> Unlimited access</li>
+            <li><i class="fas fa-check"></i> Priority Ads + discounts</li>
+            <li><i class="fas fa-check"></i> Instant real-time automation</li>
+            <li><i class="fas fa-check"></i> All Growth features included</li>
+            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+            <li><i class="fas fa-check"></i> Priority support & SLA</li>
+          </ul>
+          <a href="https://nexmove-app.vercel.app/login" class="btn btn-outline btn-block">
+            Talk to Sales <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <p style="text-align:center; font-size:0.82rem; color:var(--muted); margin-top:28px;">
+        <i class="fas fa-circle-info" style="color:var(--teal);"></i>
+        All prices exclusive of applicable taxes. Starter plan includes 30-day free trial; no credit card required.
+        Need a custom plan? <a href="#helpline" style="color:var(--teal); font-weight:600;">Contact our team</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== PAYMENTS ==================== -->
+  <section class="payments-section" id="payments">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Flexible Payment Options</div>
+        <h2>Pay the Way Pakistan Pays</h2>
+        <p>
+          Bank transfer, mobile wallets, or cards choose what works for your
+          agency. Upload your receipt directly in checkout for instant activation.
+        </p>
+      </div>
+      <div class="payment-grid">
+        <div class="payment-card">
+          <i class="fas fa-building-columns"></i>
+          <div class="pay-name">Meezan Bank</div>
+          <div class="pay-type">Bank Transfer / IBAN</div>
+        </div>
+        <div class="payment-card">
+          <i class="fas fa-mobile-screen-button"></i>
+          <div class="pay-name">EasyPaisa</div>
+          <div class="pay-type">Mobile Wallet</div>
+        </div>
+        <div class="payment-card">
+          <i class="fas fa-wallet"></i>
+          <div class="pay-name">JazzCash</div>
+          <div class="pay-type">Mobile Wallet</div>
+        </div>
+        <div class="payment-card">
+          <i class="fas fa-credit-card"></i>
+          <div class="pay-name">Stripe</div>
+          <div class="pay-type">Debit / Credit Card</div>
+        </div>
+      </div>
+      <p class="payment-note">
+        <i class="fas fa-shield-halved"></i>
+        All transactions are encrypted and verified. Bank transfer receipts are reviewed within 2 business hours.
+        Local wallet payments are confirmed instantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== SECURITY ==================== -->
+  <section class="security-section" id="security">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Security & Compliance</div>
+        <h2>Your Clients’ Data Is Locked Down</h2>
+        <p>
+          NexMove is engineered for Pakistani regulatory realities and enterprise grade
+          security so you can focus on closing deals, not worrying about leaks.
+        </p>
+      </div>
+      <div class="security-grid">
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-gavel"></i></div>
+          <div>
+            <h4>PECA 2016 Aligned</h4>
+            <p>Built in line with the Prevention of Electronic Crimes Act 2016, Electronic Transactions Ordinance 2002,
+              and Pakistan’s evolving data protection principles.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <h4>Multi-Tenant Data Shielding</h4>
+            <p>Every agency operates in a strictly isolated data environment. Cross-tenant access is architecturally
+              prevented, not just policy-blocked.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-lock"></i></div>
+          <div>
+            <h4>Encryption at Rest & In Transit</h4>
+            <p>Sensitive documents, client records, and financial ledgers are encrypted. All traffic uses TLS 1.3 with
+              HSTS enforced.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-user-shield"></i></div>
+          <div>
+            <h4>Role-Based Access Control (RBAC)</h4>
+            <p>Granular permissions for Super Admin, Agency Manager, Agent, and Public User. No unauthorized eyes on
+              your pipeline.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-database"></i></div>
+          <div>
+            <h4>Secure Sessions & Audit Logs</h4>
+            <p>NextAuth-powered session management with agency-specific claims, plus tamper-evident audit trails for
+              critical actions.</p>
+          </div>
+        </div>
+        <div class="security-item">
+          <div class="s-icon"><i class="fas fa-clock-rotate-left"></i></div>
+          <div>
+            <h4>Daily Backups & 99.9% Uptime</h4>
+            <p>Automated daily backups with point-in-time recovery. Redundant infrastructure designed for business
+              continuity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HELPLINE ==================== -->
+  <section class="helpline-section" id="helpline">
+    <div class="container">
+      <div class="helpline-box">
+        <div>
+          <h2>Need Help? We’re a Call Away.</h2>
+          <p>
+            Whether you’re setting up your trial, upgrading a plan, or uploading a
+            payment receipt — our Pakistan-based support team is here for you.
+          </p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="c-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <div class="c-label">Helpline</div>
+                <div class="c-value"><a href="tel:+923204326715">+92 320 4326715</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+              <div>
+                <div class="c-label">WhatsApp Support</div>
+                <div class="c-value"><a href="https://wa.me/923225673641" target="_blank" rel="noopener">+92 322
+                    5673641</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="c-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="c-label">Email</div>
+                <div class="c-value"><a href="mailto:nexmove.pk@gmail.com">nexmove.pk@gmail.com</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="helpline-hours">
+            <i class="fas fa-clock"></i> Mon–Sat, 10:00 AM – 10:00 PM (PKT)
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <a href="https://nexmove-app.vercel.app/login" class="btn btn-primary btn-block">
+            <i class="fas fa-right-to-bracket"></i> Login to Your Agency
+          </a>
+          <a href="https://wa.me/923225673641" target="_blank" rel="noopener" class="btn btn-outline-light btn-block">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-align:center; margin-top:4px;">
+            Average response time: under 15 minutes during business hours
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-mark"><i class="fas fa-building"></i></div>
+            Nex<span>Move</span> <span class="logo-proptech">PropTech</span>
+          </a>
+          <p>
+            Next-gen PropTech SaaS for Pakistani real estate agencies. Secure,
+            scalable, and built for how you actually work.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="blog.html">Blog & Insights</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#payments">Payments</a></li>
+            <li><a href="#security">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#helpline">Contact</a></li>
+            <li><a href="https://nexmove-app.vercel.app/login">Login</a></li>
+            <li><a href="https://nexmove-app.vercel.app/register">Sign Up / Register</a></li>
+            <li><a href="#" onclick="openModal('termsModal'); return false;">Terms & Conditions</a></li>
+            <li><a href="#" onclick="openModal('privacyModal'); return false;">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="tel:+923204326715">+92 320 4326715</a></li>
+            <li><a href="mailto:nexmove.pk@gmail.com">nexmove.pk@gmail.com</a></li>
+            <li><a href="https://wa.me/923225673641" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="#helpline">Helpline Hours</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 NexMove PropTech. All rights reserved. Built in Pakistan 🇵🇰</span>
+        <div class="footer-legal">
+          <a href="#" onclick="openModal('termsModal'); return false;">Terms</a>
+          <a href="#" onclick="openModal('privacyModal'); return false;">Privacy</a>
+          <a href="#security">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== REGISTRATION MODAL ==================== -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal" style="max-width: 540px;">
+      <button class="modal-close" onclick="closeModal('registerModal')" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div class="logo-mark" style="margin: 0 auto 12px; width: 44px; height: 44px; font-size: 1.3rem;">
+          <i class="fas fa-building"></i>
+        </div>
+        <h2 style="font-size: 1.5rem; margin-bottom: 4px;">Get Started with NexMove</h2>
+        <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 0;">Create your agency account in under 2
+          minutes</p>
+      </div>
+
+      <form id="agencyRegisterForm" onsubmit="handleRegistration(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label
+              style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">Full
+              Name *</label>
+            <input type="text" id="regFullName" required placeholder="e.g. Ali Khan"
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='#E2E8F0'" />
+          </div>
+          <div>
+            <label
+              style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">Agency
+              Name *</label>
+            <input type="text" id="regAgencyName" required placeholder="e.g. Prime Realty Lahore"
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='#E2E8F0'" />
+          </div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label
+            style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">Official
+            Email *</label>
+          <input type="email" id="regEmail" required placeholder="agent@youragency.com"
+            style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='#E2E8F0'" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label
+              style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">Phone
+              / WhatsApp *</label>
+            <input type="tel" id="regPhone" required placeholder="+92 300 1234567"
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='#E2E8F0'" />
+          </div>
+          <div>
+            <label
+              style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">City
+              / Market</label>
+            <input type="text" id="regCity" placeholder="Lahore, Karachi, Islamabad"
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='#E2E8F0'" />
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label
+            style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em;">Preferred
+            Plan</label>
+          <select id="regPlan"
+            style="width: 100%; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 0.9rem; font-family: inherit; outline: none; background: #fff; cursor: pointer;">
+            <option value="Starter (30-Day Free Trial)">Starter - 3 Agents (30-Day Free Trial)</option>
+            <option value="Growth">Growth - 8 Agents + 5 Co-Broking Deals / mo</option>
+            <option value="Enterprise">Elite Enterprise - Unlimited Scale & Deals</option>
+          </select>
+        </div>
+
+        <button type="submit" id="regSubmitBtn" class="btn btn-primary btn-block"
+          style="font-size: 0.95rem; padding: 13px; font-weight: 700; box-shadow: 0 4px 14px rgba(13, 148, 136, 0.4);">
+          <i class="fas fa-rocket"></i> Register Agency & Start Free Trial
+        </button>
+
+        <div id="regSuccessMsg"
+          style="display: none; background: #ECFDF5; border: 1px solid #10B981; color: #065F46; padding: 12px; border-radius: 10px; font-size: 0.85rem; margin-top: 14px; text-align: center;">
+          <i class="fas fa-check-circle" style="color: #10B981; margin-right: 6px;"></i>
+          <strong>Success!</strong> Registration received. Redirecting to your dashboard...
+        </div>
+
+        <p style="font-size: 0.76rem; color: #94A3B8; text-align: center; margin-top: 14px; margin-bottom: 0;">
+          Already have an account? <a href="https://nexmove-app.vercel.app/login"
+            style="color: var(--teal); font-weight: 600;">Login here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+  <div class="modal-overlay" id="termsModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('termsModal')" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2>Terms & Conditions</h2>
+      <p class="updated">Last updated: October 2026</p>
+      <p>
+        These Terms & Conditions govern your use of the NexMove PropTech platform
+        (“NexMove”, “we”, “us”, or “our”). By accessing or using our services, you
+        agree to be bound by these terms.
+      </p>
+      <h3>1. Subscription & Billing</h3>
+      <p>
+        NexMove offers subscription plans billed monthly, quarterly, half-yearly,
+        or annually in Pakistani Rupees (PKR). Starter plans include a 30-day free
+        trial. Paid subscriptions renew automatically unless cancelled before the
+        renewal date. All fees are exclusive of applicable taxes.
+      </p>
+      <h3>2. Acceptable Use</h3>
+      <p>
+        You agree not to misuse the platform, attempt unauthorized access, scrape
+        data, or upload malicious content. Agencies are responsible for the
+        accuracy of their listings and compliance with local real estate regulations.
+      </p>
+      <h3>3. Data Ownership</h3>
+      <p>
+        You retain ownership of your agency’s data. NexMove processes your data
+        solely to provide the service, in accordance with our Privacy Policy.
+      </p>
+      <h3>4. Limitation of Liability</h3>
+      <p>
+        To the maximum extent permitted by law, NexMove’s liability for any claim
+        arising from your use of the platform is limited to the amount you paid in
+        the 12 months preceding the claim.
+      </p>
+      <h3>5. Governing Law</h3>
+      <p>
+        These terms are governed by the laws of the Islamic Republic of Pakistan,
+        including the Prevention of Electronic Crimes Act 2016 (PECA) and the
+        Electronic Transactions Ordinance 2002, where applicable.
+      </p>
+      <h3>6. Contact</h3>
+      <p>
+        For questions about these terms, contact us at
+        <a href="mailto:nexmove.pk@gmail.com" style="color:var(--teal);">nexmove.pk@gmail.com</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('privacyModal')" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2>Privacy Policy</h2>
+      <p class="updated">Last updated: October 2026</p>
+      <p>
+        NexMove respects your privacy and is committed to protecting your personal
+        and agency data. This policy explains what we collect, why, and how we
+        safeguard it.
+      </p>
+      <h3>1. Information We Collect</h3>
+      <ul>
+        <li>Account details: name, email, phone number, agency name, and role.</li>
+        <li>Property and client data you upload to the platform.</li>
+        <li>Payment information processed via Meezan Bank, EasyPaisa, JazzCash, or Stripe.</li>
+        <li>Usage data such as login times, features used, and device information.</li>
+      </ul>
+      <h3>2. How We Use Your Data</h3>
+      <ul>
+        <li>To provide, maintain, and improve the NexMove platform.</li>
+        <li>To process payments and send billing-related communications.</li>
+        <li>To send WhatsApp and push alerts you have opted into.</li>
+        <li>To comply with legal obligations under PECA 2016 and other applicable laws.</li>
+      </ul>
+      <h3>3. Data Sharing</h3>
+      <p>
+        We do not sell your data. We share data only with trusted service providers
+        (payment processors, cloud infrastructure, WhatsApp API providers) under
+        strict confidentiality agreements.
+      </p>
+      <h3>4. Data Security</h3>
+      <p>
+        We use encryption at rest and in transit, role-based access controls,
+        multi-tenant data isolation, and regular security reviews to protect your
+        information.
+      </p>
+      <h3>5. Your Rights</h3>
+      <p>
+        You may request access to, correction of, or deletion of your personal data
+        by contacting <a href="mailto:privacy@nexmove.pk" style="color:var(--teal);">privacy@nexmove.pk</a>.
+      </p>
+      <h3>6. Contact</h3>
+      <p>
+        For privacy-related queries, email
+        <a href="mailto:privacy@nexmove.pk" style="color:var(--teal);">privacy@nexmove.pk</a>
+        or call our helpline at <a href="tel:+923204326715" style="color:var(--teal);">+92 320 4326715</a>.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- PRICING TOGGLE ---------- */
+    const pricingToggle = document.getElementById('pricingToggle');
+    const priceNumbers = document.querySelectorAll('.price-amount .number');
+    const pricePeriods = document.querySelectorAll('.price-amount .period');
+    const priceNotes = document.querySelectorAll('.price-note');
+
+    const periodMap = {
+      monthly: '/month',
+      quarterly: '/quarter',
+      halfyearly: '/6 months',
+      annual: '/year'
+    };
+    const noteMap = {
+      monthly: 'Billed monthly',
+      quarterly: 'Billed every 3 months',
+      halfyearly: 'Billed every 6 months',
+      annual: 'Billed annually'
+    };
+
+    pricingToggle.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      pricingToggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cycle = btn.dataset.cycle;
+
+      priceNumbers.forEach(el => {
+        el.textContent = el.dataset[cycle];
+      });
+      pricePeriods.forEach(el => {
+        el.textContent = periodMap[cycle];
+      });
+      priceNotes.forEach(el => {
+        el.textContent = noteMap[cycle];
+      });
+    });
+
+    /* ---------- MOBILE MENU ---------- */
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = mobileToggle.querySelector('i');
+      if (navLinks.classList.contains('open')) {
+        icon.className = 'fas fa-times';
+      } else {
+        icon.className = 'fas fa-bars';
+      }
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        mobileToggle.querySelector('i').className = 'fas fa-bars';
+      });
+    });
+
+    /* ---------- MODALS ---------- */
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+          m.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+
+    /* ---------- SMOOTH SCROLL OFFSET (sticky nav) ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+    /* ---------- REGISTRATION FORM HANDLER (BACKEND / LOCAL) ---------- */
+    async function handleRegistration(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('regSubmitBtn');
+      const successMsg = document.getElementById('regSuccessMsg');
+
+      const formData = {
+        fullName: document.getElementById('regFullName').value.trim(),
+        agencyName: document.getElementById('regAgencyName').value.trim(),
+        email: document.getElementById('regEmail').value.trim(),
+        phone: document.getElementById('regPhone').value.trim(),
+        city: document.getElementById('regCity').value.trim(),
+        plan: document.getElementById('regPlan').value,
+        timestamp: new Date().toISOString()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering Agency...';
+
+      try {
+        /* Backend Endpoint call (configurable / fallback to app login) */
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        }).catch(() => null);
+
+        /* Save locally for offline/demo resilience */
+        const existing = JSON.parse(localStorage.getItem('nexmove_registrations') || '[]');
+        existing.push(formData);
+        localStorage.setItem('nexmove_registrations', JSON.stringify(existing));
+
+        submitBtn.style.display = 'none';
+        successMsg.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = 'https://nexmove-app.vercel.app/login?registered=1&email=' + encodeURIComponent(formData.email);
+        }, 1500);
+      } catch (err) {
+        console.error('Registration error:', err);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Register Agency & Start Free Trial';
+        alert('Registration error. Redirecting to login portal...');
+        window.location.href = 'https://nexmove-app.vercel.app/login';
+      }
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexMove Blog | PropTech & Pakistani Real Estate Insights</title>
+  <meta name="description"
+    content="Read the latest insights, regulatory guides, digital agency scaling strategies, and PropTech innovations shaping Pakistan's real estate sector with NexMove." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy: #0B192C;
+      --navy-light: #1E3A5F;
+      --emerald-accent: #00C2FF;
+      --gold: #10B981;
+      --gold-light: #6EE7B7;
+      --teal: #0099CC;
+      --teal-light: #E8F7FF;
+      --bg: #F0F4F8;
+      --card: #FFFFFF;
+      --text: #0B192C;
+      --muted: #5A7184;
+      --border: #D1DDE8;
+      --radius: 18px;
+      --shadow: 0 4px 24px rgba(11, 25, 44, 0.07);
+      --shadow-lg: 0 20px 50px rgba(11, 25, 44, 0.12);
+      --max: 1200px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img, svg { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 600; font-size: 0.95rem; padding: 12px 24px; border-radius: 12px;
+      border: 2px solid transparent; cursor: pointer; transition: all 0.2s ease;
+      white-space: nowrap; font-family: inherit;
+    }
+    .btn-primary { background: var(--gold); color: #fff; border-color: var(--gold); }
+    .btn-primary:hover { background: #059669; border-color: #059669; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35); }
+    .btn-outline { background: transparent; color: var(--navy); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--navy); background: #fff; }
+    .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.25); }
+    .btn-outline-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+    .btn-sm { padding: 9px 18px; font-size: 0.85rem; border-radius: 10px; }
+
+    /* Navbar */
+    .navbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(11, 25, 44, 0.97); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.35rem; color: #fff; letter-spacing: -0.02em; }
+    .logo-mark {
+      width: 36px; height: 36px; background: var(--gold); color: #fff; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 900;
+    }
+    .logo-proptech {
+      font-size: 0.95rem; font-weight: 500; color: var(--teal); letter-spacing: 0.05em;
+      text-transform: uppercase; margin-left: 2px; padding-left: 6px;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .logo span { color: var(--gold-light); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .mobile-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 6px; }
+
+    /* Blog Hero */
+    .blog-hero {
+      position: relative; background: linear-gradient(145deg, #0B192C 0%, #0D2137 50%, #022C22 100%);
+      color: #fff; padding: 70px 0 80px; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: -30%; right: -10%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, transparent 70%); pointer-events: none;
+    }
+    .blog-hero-content { max-width: 760px; }
+    .blog-tag {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35); color: var(--gold-light); padding: 6px 14px;
+      border-radius: 30px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 20px;
+    }
+    .blog-hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .blog-hero h1 span { background: linear-gradient(135deg, #6EE7B7 0%, #00C2FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .blog-hero p { font-size: 1.15rem; color: #C3D5E6; line-height: 1.7; margin-bottom: 30px; }
+
+    /* Search & Filter Bar */
+    .controls-wrapper { margin-top: -30px; position: relative; z-index: 10; margin-bottom: 40px; }
+    .controls-card {
+      background: var(--card); border-radius: var(--radius); padding: 16px 20px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .search-input-box { position: relative; flex: 1; min-width: 260px; }
+    .search-input-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
+    .search-input-box input {
+      width: 100%; padding: 12px 16px 12px 44px; border-radius: 12px; border: 1.5px solid var(--border);
+      font-size: 0.95rem; font-family: inherit; outline: none; transition: all 0.2s ease; background: #F8FAFC;
+    }
+    .search-input-box input:focus { background: #fff; border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0, 153, 204, 0.12); }
+    .category-pills { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .cat-btn {
+      background: #F1F5F9; color: var(--muted); border: 1px solid transparent; padding: 8px 16px;
+      border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+    }
+    .cat-btn:hover { background: #E2E8F0; color: var(--navy); }
+    .cat-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    /* Featured Post */
+    .featured-section { margin-bottom: 50px; }
+    .featured-card {
+      background: var(--card); border-radius: 24px; border: 1px solid var(--border);
+      box-shadow: var(--shadow); display: grid; grid-template-columns: 1.1fr 1fr;
+      overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; cursor: pointer;
+    }
+    .featured-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .featured-visual {
+      background: linear-gradient(135deg, #0B192C 0%, #1E3A5F 50%, #064E3B 100%);
+      padding: 48px; display: flex; flex-direction: column; justify-content: space-between;
+      color: #fff; position: relative; overflow: hidden; min-height: 380px;
+    }
+    .featured-visual::after {
+      content: ''; position: absolute; bottom: -60px; right: -60px; width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%); pointer-events: none;
+    }
+    .featured-badge {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.5); color: var(--gold-light); padding: 6px 14px;
+      border-radius: 30px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; width: fit-content;
+    }
+    .featured-symbol { margin: auto 0; text-align: center; padding: 24px 0; }
+    .featured-symbol i { font-size: 4.8rem; color: rgba(255, 255, 255, 0.9); filter: drop-shadow(0 10px 20px rgba(0, 194, 255, 0.25)); }
+    .featured-content { padding: 44px; display: flex; flex-direction: column; justify-content: center; }
+    .post-meta { display: flex; align-items: center; gap: 16px; font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+    .post-meta span { display: flex; align-items: center; gap: 6px; }
+    .featured-content h2 { font-size: 1.85rem; font-weight: 800; color: var(--navy); line-height: 1.3; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .featured-content p { color: var(--muted); font-size: 1rem; line-height: 1.65; margin-bottom: 24px; }
+    .author-bar { display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid #EDF2F7; }
+    .author-info { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: #E0F2FE; color: #0369A1;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; border: 2px solid #BAE6FD;
+    }
+    .author-name { font-size: 0.92rem; font-weight: 700; color: var(--navy); }
+    .author-role { font-size: 0.78rem; color: var(--muted); }
+    .read-more-link { color: var(--gold); font-weight: 700; font-size: 0.92rem; display: flex; align-items: center; gap: 6px; transition: gap 0.2s ease; }
+    .featured-card:hover .read-more-link { gap: 10px; color: #059669; }
+
+    /* Posts Grid */
+    .posts-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .posts-section-header h3 { font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+    .posts-count { font-size: 0.9rem; color: var(--muted); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 60px; }
+    .blog-card {
+      background: var(--card); border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow);
+      overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .blog-card-thumb { height: 200px; position: relative; display: flex; align-items: center; justify-content: center; color: #fff; overflow: hidden; }
+    .thumb-crm { background: linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%); }
+    .thumb-compliance { background: linear-gradient(135deg, #064E3B 0%, #065F46 100%); }
+    .thumb-tech { background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); }
+    .thumb-whatsapp { background: linear-gradient(135deg, #065F46 0%, #0D9488 100%); }
+    .thumb-investment { background: linear-gradient(135deg, #7C2D12 0%, #9A3412 100%); }
+    .thumb-legal { background: linear-gradient(135deg, #1E293B 0%, #334155 100%); }
+    .thumb-icon { font-size: 3.5rem; color: rgba(255, 255, 255, 0.85); transition: transform 0.3s ease; }
+    .blog-card:hover .thumb-icon { transform: scale(1.1); }
+    .card-category-tag {
+      position: absolute; top: 14px; left: 14px; background: rgba(11, 25, 44, 0.7); backdrop-filter: blur(8px);
+      color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px;
+      border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .blog-card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+    .blog-card-body .post-meta { font-size: 0.8rem; margin-bottom: 10px; }
+    .blog-card-body h4 { font-size: 1.22rem; font-weight: 800; color: var(--navy); line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .blog-card-body p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; flex: 1; }
+    .blog-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #F1F5F9; }
+    .mini-author { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+    .mini-avatar { width: 28px; height: 28px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--navy); }
+    .card-read-link { font-size: 0.85rem; font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 4px; }
+
+    /* Newsletter */
+    .newsletter-section {
+      background: linear-gradient(135deg, #0B192C 0%, #112948 100%); border-radius: 24px;
+      padding: 56px 40px; color: #fff; margin-bottom: 70px; position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .newsletter-section::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, transparent 70%); pointer-events: none;
+    }
+    .newsletter-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .newsletter-inner .badge {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 194, 255, 0.15);
+      border: 1px solid rgba(0, 194, 255, 0.35); color: #7DD3FC; padding: 5px 14px;
+      border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;
+    }
+    .newsletter-inner h3 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.25; margin-bottom: 14px; }
+    .newsletter-inner p { font-size: 1.05rem; color: #CBD5E1; margin-bottom: 28px; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 500px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1; padding: 14px 18px; border-radius: 12px; border: 1.5px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 0.95rem; font-family: inherit; outline: none;
+    }
+    .newsletter-form input::placeholder { color: #94A3B8; }
+    .newsletter-form input:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--gold-light); }
+    .newsletter-form button { padding: 14px 26px; font-size: 0.95rem; font-weight: 700; border-radius: 12px; background: var(--gold); color: #fff; border: none; cursor: pointer; transition: all 0.2s; }
+    .newsletter-form button:hover { background: #059669; transform: translateY(-1px); }
+
+    /* Article Modal */
+    .article-modal-overlay {
+      position: fixed; inset: 0; background: rgba(11, 25, 44, 0.75); backdrop-filter: blur(8px);
+      z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .article-modal-overlay.active { display: flex; }
+    .article-modal {
+      background: #fff; width: 100%; max-width: 820px; max-height: 90vh; overflow-y: auto;
+      border-radius: 20px; padding: 40px; position: relative; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .article-modal-close {
+      position: absolute; top: 20px; right: 20px; background: #F1F5F9; border: none; width: 36px; height: 36px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      color: var(--muted); font-size: 1.1rem; transition: all 0.2s;
+    }
+    .article-modal-close:hover { background: #E2E8F0; color: var(--navy); }
+    .article-full-category { display: inline-block; background: #E0F2FE; color: #0369A1; padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+    .article-full-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: var(--navy); line-height: 1.25; margin-bottom: 16px; }
+    .article-full-meta { display: flex; align-items: center; gap: 18px; font-size: 0.88rem; color: var(--muted); padding-bottom: 20px; border-bottom: 1px solid #EDF2F7; margin-bottom: 24px; }
+    .article-full-content { font-size: 1.05rem; line-height: 1.8; color: #334155; }
+    .article-full-content p { margin-bottom: 18px; }
+    .article-full-content h3 { font-size: 1.35rem; font-weight: 700; color: var(--navy); margin: 28px 0 12px; }
+    .article-full-content ul { list-style: disc; padding-left: 24px; margin-bottom: 20px; }
+    .article-full-content li { margin-bottom: 8px; }
+    .article-callout { background: #F0FDF4; border-left: 4px solid var(--gold); padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; color: #166534; font-size: 0.98rem; }
+
+    /* Footer */
+    footer { background: #060F1A; color: rgba(255, 255, 255, 0.7); padding: 70px 0 30px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.9rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { margin-top: 14px; max-width: 320px; line-height: 1.6; color: #8899A6; font-size: 0.88rem; }
+    .footer-col h4 { color: #fff; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: #8899A6; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.82rem; color: #627282; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { color: #627282; transition: color 0.2s; }
+    .footer-legal a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-visual { min-height: 220px; padding: 32px; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; align-items: stretch; position: absolute;
+        top: 72px; left: 0; right: 0; background: #060f24; padding: 20px 24px; gap: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+      }
+      .nav-links.open a { padding: 8px 0; font-size: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+      .mobile-toggle {
+        display: flex; align-items: center; justify-content: center; width: 38px; height: 38px;
+        background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px; color: #fff; cursor: pointer; font-size: 1.1rem;
+      }
+      .blog-grid { grid-template-columns: 1fr; }
+      .controls-card { flex-direction: column; align-items: stretch; }
+      .newsletter-form { flex-direction: column; }
+      .article-modal { padding: 24px 18px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-legal { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-mark"><img src="Logo.png" alt="NexMove Logo"></div>
+        Nex<span>Move</span> <span class="logo-proptech">PropTech</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#features">Features</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#payments">Payments</a>
+        <a href="index.html#security">Security</a>
+        <a href="index.html#helpline">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://nexmove-app.vercel.app/login" class="btn btn-outline-light btn-sm">
+          <i class="fas fa-right-to-bracket"></i> Login
+        </a>
+        <a href="https://nexmove-app.vercel.app/register" class="btn btn-primary btn-sm">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== BLOG HERO ==================== -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero-content">
+        <div class="blog-tag">
+          <i class="fas fa-newspaper"></i> Industry Insights & Playbooks
+        </div>
+        <h1>
+          The <span>NexMove</span> Proptech Blog
+        </h1>
+        <p>
+          Actionable intelligence, regulatory changes, technology trends, and sales playbooks tailored exclusively for real estate agencies and brokers operating across Pakistan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SEARCH & FILTERS ==================== -->
+  <div class="container controls-wrapper">
+    <div class="controls-card">
+      <div class="search-input-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="blogSearchInput" placeholder="Search insights, keywords, or topics..." oninput="filterPosts()" />
+      </div>
+      <div class="category-pills" id="categoryFilter">
+        <button class="cat-btn active" data-category="all" onclick="setCategory('all', this)">All Topics</button>
+        <button class="cat-btn" data-category="proptech" onclick="setCategory('proptech', this)">PropTech SaaS</button>
+        <button class="cat-btn" data-category="legal" onclick="setCategory('legal', this)">PECA & Compliance</button>
+        <button class="cat-btn" data-category="sales" onclick="setCategory('sales', this)">Sales & WhatsApp</button>
+        <button class="cat-btn" data-category="market" onclick="setCategory('market', this)">Pakistan Market</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ==================== FEATURED POST ==================== -->
+    <section class="featured-section" id="featuredPostArea">
+      <article class="featured-card" onclick="openArticleModal('featured')">
+        <div class="featured-visual">
+          <div class="featured-badge">
+            <i class="fas fa-star"></i> Featured Guide
+          </div>
+          <div class="featured-symbol">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <span style="font-size:0.85rem; opacity:0.8; letter-spacing:0.04em;">PRODUCED BY NEXMOVE RESEARCH</span>
+          </div>
+        </div>
+        <div class="featured-content">
+          <div class="post-meta">
+            <span><i class="far fa-calendar"></i> October 24, 2026</span>
+            <span><i class="far fa-clock"></i> 7 min read</span>
+            <span><i class="fas fa-tag"></i> PropTech SaaS</span>
+          </div>
+          <h2>Why Pakistani Real Estate Agencies Are Moving from Spreadsheets to Multi-Tenant Cloud CRMs</h2>
+          <p>
+            From lost client leads in private WhatsApp chats to commission leakages and unverified paperwork, discover how leading brokers in Lahore, Karachi, and Islamabad are standardizing deal closures with dedicated PropTech infrastructure.
+          </p>
+          <div class="author-bar">
+            <div class="author-info">
+              <div class="author-avatar">AM</div>
+              <div>
+                <div class="author-name">Ali Mansoor</div>
+                <div class="author-role">Head of Product, NexMove</div>
+              </div>
+            </div>
+            <div class="read-more-link">
+              Read Complete Guide <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ==================== POSTS LISTING ==================== -->
+    <div class="posts-section-header">
+      <h3>Latest Articles</h3>
+      <div class="posts-count" id="postsCountText">Showing 6 articles</div>
+    </div>
+
+    <section class="blog-grid" id="blogGrid"></section>
+
+    <!-- Empty search state -->
+    <div id="noResultsMsg" style="display:none; text-align:center; padding: 60px 20px; background: #fff; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 60px;">
+      <i class="fas fa-search" style="font-size: 3rem; color: #CBD5E1; margin-bottom: 16px;"></i>
+      <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 8px;">No matching articles found</h3>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 20px;">Try adjusting your keywords or clearing the category filter.</p>
+      <button class="btn btn-outline btn-sm" onclick="resetFilters()">Reset Search</button>
+    </div>
+
+    <!-- ==================== NEWSLETTER ==================== -->
+    <section class="newsletter-section">
+      <div class="newsletter-inner">
+        <div class="badge"><i class="fas fa-envelope-open-text"></i> Weekly PropTech Dispatch</div>
+        <h3>Stay Ahead of Pakistan’s Rapidly Digitizing Property Sector</h3>
+        <p>Get exclusive quarterly market reports, compliance changes, and SaaS growth tips directly in your inbox. No spam, ever.</p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input type="email" id="nlEmail" placeholder="Enter your business email" required />
+          <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+        </form>
+        <div id="newsletterSuccess" style="display:none; margin-top:16px; color:#6EE7B7; font-weight:600; font-size:0.95rem;">
+          <i class="fas fa-check-circle"></i> You're subscribed! Check your inbox for the latest Pakistani PropTech edition.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== ARTICLE MODAL ==================== -->
+  <div class="article-modal-overlay" id="articleModalOverlay" onclick="handleOverlayClick(event)">
+    <div class="article-modal">
+      <button class="article-modal-close" onclick="closeArticleModal()" aria-label="Close article">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="articleModalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-mark"><i class="fas fa-building"></i></div>
+            Nex<span>Move</span> <span class="logo-proptech">PropTech</span>
+          </a>
+          <p>
+            Next-gen PropTech SaaS for Pakistani real estate agencies. Secure, scalable, and built for how you actually work.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="blog.html">Blog & Insights</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#payments">Payments</a></li>
+            <li><a href="index.html#security">Security</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#helpline">Contact</a></li>
+            <li><a href="https://nexmove-app.vercel.app/login">Login</a></li>
+            <li><a href="https://nexmove-app.vercel.app/register">Sign Up / Register</a></li>
+            <li><a href="index.html">Main Website</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="tel:+923204326715">+92 320 4326715</a></li>
+            <li><a href="mailto:nexmove.pk@gmail.com">nexmove.pk@gmail.com</a></li>
+            <li><a href="https://wa.me/923225673641" target="_blank" rel="noopener">WhatsApp Support</a></li>
+            <li><a href="index.html#helpline">Helpline Hours</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 NexMove PropTech. All rights reserved. Built in Pakistan 🇵🇰</span>
+        <div class="footer-legal">
+          <a href="index.html">Terms</a>
+          <a href="index.html">Privacy</a>
+          <a href="index.html#security">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* Articles Data Repository */
+    const articlesData = {
+      'featured': {
+        category: 'PropTech SaaS',
+        title: 'Why Pakistani Real Estate Agencies Are Moving from Spreadsheets to Multi-Tenant Cloud CRMs',
+        date: 'October 24, 2026',
+        readTime: '7 min read',
+        author: 'Ali Mansoor, Head of Product',
+        html: `<p>For decades, real estate brokerages across Karachi, Lahore, Rawalpindi, and Islamabad relied on notebook ledgers, local Excel files, and chaotic WhatsApp personal messages. While this workflow sufficed when an agency had two brokers, it quickly creates systemic bottlenecks as agencies scale past 5 agents.</p><h3>The Hidden Cost of Fragmented Workflows</h3><p>When an agent quits or changes brokerage, they frequently leave with sensitive client records, negotiations, and pricing intelligence. Furthermore, double-booking plot listings or offering mismatched quotes to overseas buyers erodes agency credibility.</p><div class="article-callout"><strong>Key Insight:</strong> 64% of high-net-worth property inquiries in Pakistan slip through the cracks due to a delay in agent responses beyond 2 hours. Multi-tenant PropTech CRMs automate client follow-ups instantly.</div><h3>How Multi-Tenant Architecture Safeguards Agency Data</h3><ul><li><strong>Isolated Databases:</strong> Every brokerage operates inside an isolated, encrypted workspace where unauthorized cross-tenant data leakage is structurally impossible.</li><li><strong>Role-Based Access:</strong> Junior agents can only view their assigned leads, while principal brokers and directors monitor global commission pipelines and financial reconciliations.</li><li><strong>Automated WhatsApp CRM Integration:</strong> Seamless client alerts via verified business APIs instead of uncontrolled personal phone numbers.</li></ul><h3>The ROI for Modern Brokerages</h3><p>Agencies that transitioned to NexMove reported a 42% acceleration in average days-to-close on luxury residential units and zero deal conflicts between co-working agents.</p>`
+      },
+      'peca-compliance': {
+        category: 'PECA & Compliance',
+        title: 'PECA 2016 & Real Estate Data Protection: What Pakistani Agencies Must Know',
+        date: 'October 21, 2026',
+        readTime: '5 min read',
+        author: 'Zainab Khan, Legal Counsel',
+        html: `<p>The Prevention of Electronic Crimes Act (PECA) 2016 and ongoing data protection directives impose strict responsibilities on businesses storing Pakistani citizens' financial identifiers, CNIC copies, and transaction histories.</p><h3>Legal Risks of Storing CNICs in Open Phone Chats</h3><p>Holding unencrypted CNIC scans and title deeds in personal WhatsApp photo albums exposes agencies to severe regulatory penalties and civil liabilities should an agent's device become compromised.</p><div class="article-callout"><strong>Compliance Tip:</strong> NexMove automatically watermarks uploaded identity documents and stores files in encrypted cold storage complying with local regulatory standards.</div><h3>Audit Trails for High-Value Transactions</h3><p>Always preserve immutable audit logs of who created, downloaded, or shared deal documentation with co-brokers or buyers.</p>`
+      },
+      'whatsapp-leads': {
+        category: 'Sales & WhatsApp',
+        title: 'Converting WhatsApp Inquiries into Closed Deals in Under 48 Hours',
+        date: 'October 18, 2026',
+        readTime: '4 min read',
+        author: 'Hamza Usman, Growth Lead',
+        html: `<p>WhatsApp is Pakistan’s primary business medium. However, unstructured chat histories leave property buyers waiting for hours for brochures, floor plans, and pricing breakdowns.</p><h3>The 5-Minute Follow-up Golden Rule</h3><p>Buyers inspecting listings on social ads or portals have short attention spans. NexMove’s instant WhatsApp bot greets the prospective buyer with interactive buttons to view the verified plot coordinates and virtual brochure.</p><h3>Centralized Inbox for Broker Teams</h3><p>Agency principals can see all inbound chats in one unified dashboard, assign leads to available agents, and monitor client sentiment in real time.</p>`
+      },
+      'virtual-tours': {
+        category: 'PropTech SaaS',
+        title: 'Selling Luxury Units to Overseas Pakistanis Using 3D Virtual Tours & Deal Rooms',
+        date: 'October 15, 2026',
+        readTime: '6 min read',
+        author: 'Saad Rauf, Tech Architect',
+        html: `<p>Expatriates in the UK, UAE, USA, and Canada represent a huge portion of investment capital into Pakistani luxury developments. Yet, physical distance and fear of deceptive imagery often stalls transaction progress.</p><h3>Interactive 3D Walkthroughs vs Static Photos</h3><p>Empowering overseas clients to explore properties down to hallway dimensions builds genuine buying confidence without needing local relatives to conduct physical visits.</p><h3>Digital Deal Rooms with Multi-Currency Invoicing</h3><p>Once interested, buyers enter a digital deal room containing title verification, installment schedule tables in USD/GBP/PKR, and milestone-linked payment instructions.</p>`
+      },
+      'co-broking': {
+        category: 'Pakistan Market',
+        title: 'Co-Broking in Pakistan: Solving Trust Deficits Between Competing Agencies',
+        date: 'October 11, 2026',
+        readTime: '5 min read',
+        author: 'Farhan Qureshi, Broker Strategist',
+        html: `<p>In Pakistan, co-broking (where Agency A holds the inventory and Agency B brings the buyer) is notorious for commission cuts and direct client hijacking.</p><h3>Smart Contracts & Deal Locking</h3><p>NexMove’s verified deal locking enables mutual sign-off before buyer contact information is unveiled, guaranteeing agreed-upon commission splits through automated ledger tracking.</p>`
+      },
+      'ai-docs': {
+        category: 'PropTech SaaS',
+        title: 'AI Document Extraction for Pakistani Real Estate: Allotment Letters & Fard Verification',
+        date: 'October 06, 2026',
+        readTime: '5 min read',
+        author: 'Ali Mansoor, Product Lead',
+        html: `<p>Manual transcription of allotment letters from housing authorities like DHA, Bahria, LDA, and CDA is error-prone. One misplaced digit in a plot number can invalidate entire sales agreements.</p><h3>Computer Vision Trained on Pakistani Documents</h3><p>NexMove uses specialized optical character recognition designed for varied paper formats, seals, and Urdu/English stamps to pull data directly into CRM property cards in seconds.</p>`
+      },
+      'market-trends-2027': {
+        category: 'Pakistan Market',
+        title: 'Pakistan Real Estate Outlook: How Digitalization Will Dictate 2027 Market Leaders',
+        date: 'September 28, 2026',
+        readTime: '8 min read',
+        author: 'Hamza Usman, Growth Lead',
+        html: `<p>As inflation, tax adjustments, and construction cost fluctuations continue to reshape purchasing habits, the traditional speculative flipping model is giving way to data-driven rental yield and commercial asset acquisitions.</p><h3>Key Trends Shaping The Market</h3><ul><li>Surge in demand for verified rental management portals with digital payment reconciliations.</li><li>Institutional investors demanding rigorous financial dashboards before allocating capital.</li><li>Agencies adopting software platforms out-competing unorganized local dealers by 3x in transaction velocity.</li></ul>`
+      }
+    };
+
+    /* Mobile Menu */
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = mobileToggle.querySelector('i');
+      icon.className = navLinks.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+    });
+
+    const postCardsConfig = [
+      { id: 'peca-compliance', catKey: 'legal', catName: 'PECA & Compliance', thumbClass: 'thumb-compliance', icon: 'fa-shield-halved', title: 'PECA 2016 & Real Estate Data Protection: What Pakistani Agencies Must Know', summary: 'A non-lawyer breakdown of client privacy, digitized registry storage, encrypted KYC audits, and shielding your brokerage from cyber fraud liabilities.', date: 'Oct 21, 2026', readTime: '5 min read', authorInitials: 'ZK', author: 'Zainab Khan, Legal Counsel' },
+      { id: 'whatsapp-leads', catKey: 'sales', catName: 'Sales & WhatsApp', thumbClass: 'thumb-whatsapp', icon: 'fab fa-whatsapp', title: 'Converting WhatsApp Inquiries into Closed Deals in Under 48 Hours', summary: 'How automated response triggers, instant property brochures, and virtual tour links eliminate lead leakage for real estate teams.', date: 'Oct 18, 2026', readTime: '4 min read', authorInitials: 'HU', author: 'Hamza Usman, Growth Lead' },
+      { id: 'virtual-tours', catKey: 'proptech', catName: 'PropTech SaaS', thumbClass: 'thumb-tech', icon: 'fa-cube', title: 'Selling Luxury Units to Overseas Pakistanis Using 3D Virtual Tours & Deal Rooms', summary: 'How agencies in DHA Lahore and Bahria Town Karachi are closing 30% more expatriate buyers through real-time video walkthroughs and digital escrow.', date: 'Oct 15, 2026', readTime: '6 min read', authorInitials: 'SR', author: 'Saad Rauf, Tech Architect' },
+      { id: 'co-broking', catKey: 'market', catName: 'Pakistan Market', thumbClass: 'thumb-investment', icon: 'fa-handshake', title: 'Co-Broking in Pakistan: Solving Trust Deficits Between Competing Agencies', summary: 'Why fragmented dealer networks lose deals and how private, timestamped multi-agency deal rooms are safeguarding shared commissions.', date: 'Oct 11, 2026', readTime: '5 min read', authorInitials: 'FK', author: 'Farhan Qureshi, Broker Strategist' },
+      { id: 'ai-docs', catKey: 'proptech', catName: 'PropTech SaaS', thumbClass: 'thumb-crm', icon: 'fa-file-contract', title: 'AI Document Extraction for Pakistani Real Estate: Allotment Letters & Fard Verification', summary: 'Eliminate human data entry errors. Upload complex land authority documents and instantly extract registry numbers, plot coordinates, and owner profiles.', date: 'Oct 06, 2026', readTime: '5 min read', authorInitials: 'AM', author: 'Ali Mansoor, Product Lead' },
+      { id: 'market-trends-2027', catKey: 'market', catName: 'Pakistan Market', thumbClass: 'thumb-legal', icon: 'fa-city', title: 'Pakistan Real Estate Outlook: How Digitalization Will Dictate 2027 Market Leaders', summary: 'Key economic indicators, REIT developments, rental yield trends across tier-1 cities, and why tech adoption is no longer optional for survival.', date: 'Sep 28, 2026', readTime: '8 min read', authorInitials: 'HU', author: 'Hamza Usman, Growth Lead' }
+    ];
+
+    function renderBlogCards() {
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = postCardsConfig.map(post => `
+        <article class="blog-card" data-category="${post.catKey}" data-id="${post.id}" onclick="openArticleModal('${post.id}')">
+          <div class="blog-card-thumb ${post.thumbClass}">
+            <span class="card-category-tag">${post.catName}</span>
+            <i class="${post.icon.startsWith('fab') ? post.icon : 'fas ' + post.icon} thumb-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> ${post.date}</span>
+              <span><i class="far fa-clock"></i> ${post.readTime}</span>
+            </div>
+            <h4>${post.title}</h4>
+            <p>${post.summary}</p>
+            <div class="blog-card-footer">
+              <div class="mini-author">
+                <div class="mini-avatar">${post.authorInitials}</div>
+                <span>${post.author}</span>
+              </div>
+              <span class="card-read-link">Read <i class="fas fa-chevron-right"></i></span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    renderBlogCards();
+
+    /* Category & Search Filter */
+    let currentCategory = 'all';
+
+    function setCategory(cat, element) {
+      currentCategory = cat;
+      document.querySelectorAll('#categoryFilter .cat-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      filterPosts();
+    }
+
+    function filterPosts() {
+      const query = document.getElementById('blogSearchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#blogGrid .blog-card');
+      const featuredArea = document.getElementById('featuredPostArea');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        const text = card.textContent.toLowerCase();
+        const matchesCategory = (currentCategory === 'all' || cat === currentCategory);
+        const matchesQuery = query === '' || text.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (featuredArea) {
+        featuredArea.style.display = (query === '' && (currentCategory === 'all' || currentCategory === 'proptech')) ? 'block' : 'none';
+      }
+
+      const countEl = document.getElementById('postsCountText');
+      const noResults = document.getElementById('noResultsMsg');
+      countEl.textContent = `Showing ${visibleCount} article${visibleCount === 1 ? '' : 's'}`;
+      noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+    }
+
+    function resetFilters() {
+      document.getElementById('blogSearchInput').value = '';
+      currentCategory = 'all';
+      document.querySelectorAll('#categoryFilter .cat-btn').forEach(btn => {
+        if (btn.dataset.category === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      filterPosts();
+    }
+
+    /* Article Reader Modal */
+    function openArticleModal(id) {
+      const data = articlesData[id];
+      if (!data) return;
+
+      const modalBody = document.getElementById('articleModalBody');
+      modalBody.innerHTML = `
+        <span class="article-full-category">${data.category}</span>
+        <h2 class="article-full-title">${data.title}</h2>
+        <div class="article-full-meta">
+          <span><i class="far fa-user"></i> ${data.author}</span>
+          <span><i class="far fa-calendar"></i> ${data.date}</span>
+          <span><i class="far fa-clock"></i> ${data.readTime}</span>
+        </div>
+        <div class="article-full-content">
+          ${data.html}
+        </div>
+        <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid #EDF2F7; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+          <div>
+            <strong style="color:var(--navy); font-size:0.95rem;">Ready to digitize your real estate operations?</strong>
+            <p style="color:var(--muted); font-size:0.85rem; margin:0;">Experience NexMove with a 30-day free trial.</p>
+          </div>
+          <a href="https://nexmove-app.vercel.app/register" class="btn btn-primary btn-sm">
+            <i class="fas fa-rocket"></i> Start Free Trial
+          </a>
+        </div>
+      `;
+
+      document.getElementById('articleModalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticleModal() {
+      document.getElementById('articleModalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('articleModalOverlay')) {
+        closeArticleModal();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeArticleModal();
+    });
+
+    /* Newsletter Handler */
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const input = document.getElementById('nlEmail');
+      const msg = document.getElementById('newsletterSuccess');
+      if (input.value) {
+        msg.style.display = 'block';
+        input.value = '';
+        setTimeout(() => { msg.style.display = 'none'; }, 5000);
+      }
+    }
+  </script>
+</body>
+
+</html>
